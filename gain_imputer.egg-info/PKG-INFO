@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: gain-imputer
-Version: 0.0.10
+Version: 0.0.102
 Summary: Missing tabular data imputation using GANs
 Home-page: https://github.com/Jagac/gain-imputer
 Author: Jagac

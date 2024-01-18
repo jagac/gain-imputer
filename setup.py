@@ -5,10 +5,9 @@ with open("README.md", "r") as f:
 
 setup(
     name="gain_imputer",
-    version="0.0.10",
+    version="0.0.102",
     description="Missing tabular data imputation using GANs",
-    package_dir={"": "gain_imputer"},
-    packages=find_packages(where="gain_imputer"),
+    packages=find_packages(),
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Jagac/gain-imputer",

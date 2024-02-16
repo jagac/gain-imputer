@@ -1,9 +1,12 @@
+# Simple demonstration on how to use the imputer as a part of a project
+
 import numpy as np
 from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from gain_imputer import GainImputer
 from sklearn.metrics import accuracy_score, f1_score
+from sklearn.model_selection import train_test_split
+
+from gain_imputer import GainImputer
 
 # sample data
 cancer = load_breast_cancer()
@@ -30,11 +33,11 @@ gain_imputer = GainImputer(
 )
 
 # simple fit_transform
-imputed_gain_train = gain_imputer.fit_transform(X_train) 
+imputed_gain_train = gain_imputer.fit_transform(X_train)
 # also can use
-# gain_imputer.fit(X_train) 
+# gain_imputer.fit(X_train)
 # gain_imputer.transform(X_train)
-imputed_gain_test = gain_imputer.transform(X_test) 
+imputed_gain_test = gain_imputer.transform(X_test)
 
 # model training
 regressor = RandomForestClassifier(n_jobs=-1, random_state=42)
@@ -42,5 +45,3 @@ regressor.fit(imputed_gain_train, y_train)
 pred = regressor.predict(imputed_gain_test)
 print(accuracy_score(pred, y_test))
 print(f1_score(pred, y_test))
-
-

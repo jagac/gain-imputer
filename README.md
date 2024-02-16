@@ -8,7 +8,7 @@
 
 GAIN (Generative Adversarial Imputation Networks) is a Python library for imputing missing values in a dataset using the GAIN model. It provides a convenient implementation to handle missing data, allowing users to train the imputer and apply it to new data.
 
-This is an adoption of the work done: https://github.com/jsyoon0823/GAIN implemented in torch and provides a familiar workflow to sklearn.
+This is an adaptation of the work done: https://github.com/jsyoon0823/GAIN implemented in torch and provides a familiar workflow to sklearn. 
 
 
 ## Installation
@@ -16,7 +16,7 @@ This is an adoption of the work done: https://github.com/jsyoon0823/GAIN impleme
 ```bash
 $ pip install gain-imputer
 ```
-## Usage
+## Minimal Example
 Gain requires indices of categorical columns to be provided as a list in order to round them properly.
 
 ```python
@@ -28,7 +28,7 @@ gain_imputer = GainImputer(
 imputed_data = gain_imputer.fit_transform(data_with_nans)
 ```
 
-## Full example
+## Full example (CPU)
 
 ```python
 from gain_imputer import GainImputer
@@ -74,6 +74,23 @@ pred = regressor.predict(imputed_gain_test)
 # Evaluate performance
 print("Accuracy:", accuracy_score(pred, y_test))
 print("F1 Score:", f1_score(pred, y_test))
+```
+## Saving for future use
+```python
+import joblib
+
+# Train the GainImputer
+gain_imputer = GainImputer(dim=X_with_nans.shape[1], h_dim=128, cat_columns=cat_columns)
+gain_imputer.fit(X_train)
+
+# Save the trained GainImputer
+joblib.dump(gain_imputer, 'trained_gain_imputer.pkl')
+
+# Later, to load the trained GainImputer
+loaded_gain_imputer = joblib.load('trained_gain_imputer.pkl')
+
+# Use the loaded GainImputer for transformation
+imputed_gain_test = loaded_gain_imputer.transform(X_test)
 ```
 
 ## Reference 

@@ -17,7 +17,7 @@ This is an adaptation of the work done: https://github.com/jsyoon0823/GAIN imple
 $ pip install gain-imputer
 ```
 ## Minimal Example
-Gain requires indices of categorical columns to be provided as a list in order to round them properly. Checkout for more demos: https://github.com/Jagac/gain-imputer/tree/main/docs
+Gain requires indices of categorical columns to be provided as a list in order to round them properly. Check out for more demos: https://github.com/Jagac/gain-imputer/tree/main/docs
 
 ```python
 from gain_imputer import GainImputer

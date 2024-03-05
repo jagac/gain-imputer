@@ -34,7 +34,7 @@ def objective(trial):
     # Define parameters for GainImputer and RandomForestClassifier
     h_dim = trial.suggest_int("h_dim", 32, 256)
     cat_columns = [0, 1]  # Assuming categorical columns
-    batch_size = 1024
+    batch_size = 2028
     n_estimators = trial.suggest_int("n_estimators", 50, 200)
     max_depth = trial.suggest_int("max_depth", 3, 10)
 

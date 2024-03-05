@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gain-imputer"
+dynamic = ["version"]
+description = "Missing tabular data imputation using GANs"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+authors = [
+    { name = "Jagac", email = "jagac41@gmail.com" },
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.10",
+]
+dependencies = [
+    "numpy>=1.26.2",
+    "torch>=2.1.2",
+    "tqdm>=4.66.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/Jagac/gain-imputer"
+
+[tool.hatch.version]
+path = "gain_imputer/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/gain_imputer",
+]

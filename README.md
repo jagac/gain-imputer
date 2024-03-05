@@ -6,7 +6,7 @@
 
 ## Overview
 
-GAIN (Generative Adversarial Imputation Networks) is a Python library for imputing missing values in a dataset using the GAIN model. It provides a convenient implementation to handle missing data, allowing users to train the imputer and apply it to new data.
+A python library for imputing missing values in a dataset using GANs. It provides a convenient implementation to handle missing data, allowing users to train the imputer and apply it to their data.
 
 This is an adaptation of the work done: https://github.com/jsyoon0823/GAIN implemented in torch and provides a familiar workflow to sklearn. 
 

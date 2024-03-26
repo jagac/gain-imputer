@@ -36,6 +36,8 @@ class GainImputer:
         hint_rate: Optional[float] = 0.9,
         alpha: Optional[int] = 10,
         iterations: Optional[int] = 10000,
+        verbose: Optional[bool] = True,
+        show_progress: Optional[bool] = True,
     ) -> None:
 
         self.model = Gain(dim, h_dim)
@@ -46,6 +48,8 @@ class GainImputer:
         self.norm_parameters: Optional[dict] = None
         self.cat_columns = cat_columns
         self.utilities = GainUtilities()
+        self.verbose = verbose
+        self.show_progress = show_progress
 
     def __str__(self):
         info = (
@@ -63,7 +67,8 @@ class GainImputer:
         :param data: data to be used for training
         :return: self
         """
-        logger.info(f"Fitting with parameters:\n{self.__str__()}")
+        if(self.verbose):
+            logger.info(f"Fitting with parameters:\n{self.__str__()}")
         data_m = 1 - np.isnan(data)
         no, dim = data.shape
 
@@ -81,7 +86,7 @@ class GainImputer:
         optimizer_g = torch.optim.Adam(self.model.generator.parameters())
         optimizer_d = torch.optim.Adam(self.model.discriminator.parameters())
 
-        with trange(self.iterations) as t:
+        with trange(self.iterations, disable=not self.show_progress) as t:
             for epoch in t:
                 for batch_x, batch_m, batch_h in dataloader:
                     optimizer_d.zero_grad()
@@ -107,7 +112,7 @@ class GainImputer:
                     g_loss = g_loss_temp + self.alpha * mse_loss
                     g_loss.backward()
                     optimizer_g.step()
-
+                
                 t.set_postfix({"d_loss": d_loss_temp.item(), "g_loss": g_loss.item()})
 
         self.norm_parameters = norm_parameters
@@ -122,7 +127,8 @@ class GainImputer:
         """
         data_m = 1 - np.isnan(data)
         no, dim = data.shape
-        logger.info(f"Transforming data shapped {no, dim}")
+        if self.verbose:
+            logger.info(f"Transforming data shapped {no, dim}")
 
         norm_data = self.utilities.renormalizer(data, self.norm_parameters)
         norm_data_x = np.nan_to_num(norm_data, 0)

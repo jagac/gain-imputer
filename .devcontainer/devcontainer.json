@@ -1,0 +1,28 @@
+{
+	"name": "Python 3",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
+
+    "mounts": ["source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"],
+
+	"customizations": {
+		"vscode": {
+
+            "telemetry.telemetryLevel": "off",
+            "dev.containers.copyGitConfig": true,
+            "editor.formatOnSave": true,
+            "editor.defaultFormatter": "ms-python.black-formatter",
+
+
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+                "ms-python.black-formatter",
+                "ms-python.pylint"
+			]
+		}
+	}
+}

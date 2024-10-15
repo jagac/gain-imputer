@@ -1,5 +1,5 @@
 
-# GAIN Imputer (Unstable)
+# GAIN Imputer
 
 [![PyPI version](https://badge.fury.io/py/gain-imputer.svg)](https://badge.fury.io/py/gain-imputer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -8,7 +8,7 @@
 
 A python library for imputing missing values in a dataset using GANs. It provides a convenient implementation to handle missing data, allowing users to train the imputer and apply it to their data.
 
-This is an adaptation of the work done: https://github.com/jsyoon0823/GAIN implemented in torch and provides a familiar workflow to sklearn. 
+This is an adaptation of the work done: https://github.com/jsyoon0823/GAIN implemented in torch and provides a familiar workflow to sklearn.
 
 
 ## Installation
@@ -63,11 +63,11 @@ gain_imputer = GainImputer(
 )
 
 # simple fit_transform
-imputed_gain_train = gain_imputer.fit_transform(X_train) 
+imputed_gain_train = gain_imputer.fit_transform(X_train)
 # also can use
-# gain_imputer.fit(X_train) 
+# gain_imputer.fit(X_train)
 # gain_imputer.transform(X_train)
-imputed_gain_test = gain_imputer.transform(X_test) 
+imputed_gain_test = gain_imputer.transform(X_test)
 
 # model training
 regressor = RandomForestClassifier(n_jobs=-1, random_state=42)
@@ -111,7 +111,7 @@ builder = (
 print(builder)
 ```
 
-## Reference 
+## Reference
 
 dim: The total number of features or variables in your dataset.
 
@@ -126,4 +126,5 @@ hint_rate: The probability of providing hints during training.
 alpha: A hyperparameter that balances the generator loss and mean squared error loss during training.
 
 iterations: The number of training iterations or epochs.
+
 
